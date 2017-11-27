@@ -3,12 +3,13 @@ const DiscordRPC = require('discord-rpc'),
 	spotify = new nodeSpotifyWebhelper.SpotifyWebHelper(),
 	config = require('./config.json');
 
-const ClientId = "384286107036155904";
+const ClientId = config.clientId || "384286107036155904";
+const imageKey = config.largeImageKey || "spotify";
+const imageText = config.largeImageText || undefined;
 
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 const timeMode = config.time || 'overall';
 var startTimestamp = new Date();
-var currentSong = "";
 
 async function updateActivity() {
 	if (!rpc)
@@ -26,13 +27,13 @@ async function updateActivity() {
 	    	if(config.time === 'song-time'){
 	    		startTimestamp = new Date(new Date() - (res.playing_position * 1000));
 	    	}
-	    	currentSong = res.track.track_resource.name;
 
 	    	rpc.setActivity({
-				details: `Playing ${currentSong}`,
+				details: `Playing ${res.track.track_resource.name}`,
 				state: `By ${res.track.artist_resource.name}`,
 				startTimestamp,
-				largeImageKey: 'spotify',
+				largeImageKey: imageKey,
+				largeImageText: imageText,
 				instance: false,
 			});
 			console.log(`[${new Date().toLocaleTimeString()}] Updated RPC rich presence - ${res.track.track_resource.name}`)
