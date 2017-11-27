@@ -42,7 +42,7 @@ async function updateActivity() {
 }
 
 rpc.on('ready', () => {
-	console.log(`Starting with clentId ${ClientId}`);
+	console.log(`Starting with clientId ${ClientId}`);
 
 	updateActivity();
 
