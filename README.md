@@ -25,8 +25,8 @@ Available options
 
 | Option | Description |
 | --- | --- |
-| `overall` | This will set the elapsed time to the current track position. Thanks to @mcao for PRing this. |
-| `song-time` | Show file differences that **haven't been** staged |
+| `overall` | This will set the elapsed time to the amount of time Spotify/this script has been running. |
+| `song-time` | This will set the elapsed time to the current track position. Thanks to @mcao for PRing this. |
 | `none` | Remove the elapsed time and just show the "Playing {track}\nBy {artist}" |
 
 Just go to the config.json and change the "time" to any of these.
