@@ -8,6 +8,9 @@ Sadly some libs haven't been updated in a while to apply some fixes so you will 
 Edit the /lib/ps.js so line 11 has a maxBuffer. Here is the new line 11 `exec('wmic process list /format:csv', {maxBuffer: 2000*1024}, function (err, stdout, stderr) {`
 
 ## node-spotify-webhelper
+
+NOTE: These steps are for Linux users only. Windows users should skip these steps as these are unnecessary. 
+
 You need to edit 2 lines here, line 15 the DEFAULT_PORT var, change the value to 4381. Next go to line 158 and change the `https://%s:%d%s` to `http://%s:%d%s`
 
 With them 2 files edited you should be good to go.
