@@ -5,7 +5,6 @@ const DiscordRPC = require('discord-rpc'),
 const ClientId = "384286107036155904";
 
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
-const startTimestamp = new Date();
 
 let startCount = -1;
 let guilds = 0;
@@ -19,6 +18,7 @@ async function updateActivity() {
     		return console.error(err);
     	}
     	if(res.track.track_resource && res.track.track_resource.name){
+		var startTimestamp = new Date(new Date() - (res.playing_position * 1000))
 	    	rpc.setActivity({
 				details: `Currently playing ${res.track.track_resource.name}`,
 				state: `By ${res.track.artist_resource.name}`,
