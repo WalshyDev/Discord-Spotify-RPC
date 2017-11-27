@@ -1,26 +1,35 @@
 const DiscordRPC = require('discord-rpc'),
 	nodeSpotifyWebhelper = require('node-spotify-webhelper'),
-	spotify = new nodeSpotifyWebhelper.SpotifyWebHelper();
+	spotify = new nodeSpotifyWebhelper.SpotifyWebHelper(),
+	config = require('./config.json');
 
 const ClientId = "384286107036155904";
 
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
-const startTimestamp = new Date();
-
-let startCount = -1;
-let guilds = 0;
+const timeMode = config.time || 'overall';
+var startTimestamp = new Date();
+var currentSong = "";
 
 async function updateActivity() {
 	if (!rpc)
     	return;
+
+    if(startTimestamp && config.time === 'none'){
+    	startTimestamp = undefined;
+    }
     
     spotify.getStatus(function(err, res) {
     	if(err) {
     		return console.error(err);
     	}
     	if(res.track.track_resource && res.track.track_resource.name){
+	    	if(res.track.track_resource.name !== currentSong && config.time === 'per-song'){
+	    		startTimestamp = new Date();
+	    	}
+	    	currentSong = res.track.track_resource.name;
+
 	    	rpc.setActivity({
-				details: `Currently playing ${res.track.track_resource.name}`,
+				details: `Playing ${currentSong}`,
 				state: `By ${res.track.artist_resource.name}`,
 				startTimestamp,
 				largeImageKey: 'spotify',

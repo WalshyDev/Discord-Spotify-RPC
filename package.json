@@ -1,0 +1,17 @@
+{
+  "name": "spotify-rpc",
+  "version": "1.1.0",
+  "description": "Simple rich presence for Spotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "WalshyDev",
+  "license": "GNU v3",
+  "dependencies": {
+    "discord-rpc": "^3.0.0-beta.3",
+    "discord.js": "^11.2.1",
+    "node-spotify-webhelper": "0.0.6"
+  }
+}
