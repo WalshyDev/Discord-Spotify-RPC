@@ -9,7 +9,7 @@ Edit the /lib/ps.js so line 11 has a maxBuffer. Here is the new line 11 `exec('w
 
 ## node-spotify-webhelper
 
-You need to edit a line or two here depending on if you use linux.  
+You need to edit two lines here for this lib to work correctly.
 Edit 1: line 15 the DEFAULT_PORT var, change the value to 4381.  
 Edit 2: Next go to line 158 and change the `https://%s:%d%s` to `http://%s:%d%s`
 
