@@ -23,7 +23,7 @@ async function updateActivity() {
     		return console.error(err);
     	}
     	if(res.track.track_resource && res.track.track_resource.name){
-	    	if(res.track.track_resource.name !== currentSong && config.time === 'song-time'){
+	    	if(config.time === 'song-time'){
 	    		startTimestamp = new Date(new Date() - (res.playing_position * 1000));
 	    	}
 	    	currentSong = res.track.track_resource.name;
