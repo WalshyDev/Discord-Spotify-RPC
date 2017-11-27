@@ -1,32 +1,27 @@
 {
-  "name": "discord-spotify-rpc",
-  "version": "1.1.0",
-  "description": "Adds Spotify Rich Presence to Discord",
+  "name": "discord-gpm",
+  "version": "1.0.0",
+  "description": "Adds GPM Rich Presence to Discord",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WalshyDev/Discord-Spotify-RPC.git"
   },
-  "scripts": {
-    "start": "node index.js"
-  },
   "dependencies": {
-    "node-spotify-webhelper": "^0.0.6",
     "discord-rpc": "^3.0.0-beta.3"
   },
   "keywords": [
     "discord",
-    "spotify",
+    "gpm",
     "rpc"
   ],
-  "author": "WalshyDev",
+  "author": "Dynista",
   "license": "GPL-3.0+",
   "bugs": {
-    "url": "https://github.com/WalshyDev/Discord-Spotify-RPC/issues"
+    "url": "https://github.com/Dynista/Discord-Google-Play-Music-Desktop-Player/issues"
   },
-  "homepage": "https://github.com/WalshyDev/Discord-Spotify-RPC#readme"
+  "homepage": "https://github.com/Dynista/Discord-Google-Play-Music-Desktop-Player"
 }
