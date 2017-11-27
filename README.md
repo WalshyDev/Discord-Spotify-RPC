@@ -14,3 +14,24 @@ With them 2 files edited you should be good to go.
 
 # How to run
 Run `npm start` in console after the setup steps and boom! Rich Presence with your Spotify!
+
+# Configure
+By default the time option is `song-time` which will display the elapsed time as the current song time.
+
+Available options  
+
+| Option | Description |
+| --- | --- |
+| `overall` | This will set the elapsed time to the current track position. Thanks to @mcao for PRing this. |
+| `song-time` | Show file differences that **haven't been** staged |
+| `none` | Remove the elapsed time and just show the "Playing {track}\nBy {artist}" |
+
+Just go to the config.json and change the "time" to any of these.
+Example:
+```json
+{
+    "time": "none"
+}
+```
+Result:  
+![none](https://bots.are-pretty.sexy/4eae08.png)
