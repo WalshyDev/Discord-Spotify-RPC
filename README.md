@@ -1,4 +1,7 @@
 # Install
+
+This requires NodeJS 8.0.0 or higher which can be downloaded from [here](https://nodejs.org/en/download/) and Git which can be downloaded from [here](https://git-scm.com/).
+
 Download the zip, extract to a directory then open CMD in that directory and run `npm i` and let npm install the packages.
 
 # Setup
