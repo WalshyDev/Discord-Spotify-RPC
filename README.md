@@ -44,7 +44,34 @@ Result:
 ![none](https://bots.are-pretty.sexy/4eae08.png)
 
 ## Client ID
-TODO: Document on how to make your own application and upload an asset
+It's relatively simple to make your own application to use for RPC. First of all, head to https://discordapp.com/developers/applications/me and click on the "New App" button.
+![none](https://mikecao.me/i/2026c7.png)
+
+Next, you'll want to give your application a title and upload a picture for it if you want. Please note that you cannot name it "Spotify" if you want it to show publically, as Discord has a blacklist on the names of popular applications for Rich Presence.
+![none](https://mikecao.me/i/68bdd6.png)
+
+Great job! You've made the application. Take note of the Client ID, you'll need it for the config file later.
+![none](https://mikecao.me/i/c5a5b9.png)
+
+Next, you'll want to click the button at the bottom that says "Enable Rich Presence".
+![none](https://mikecao.me/i/68d3a8.png)
+
+Great! Rich presence is enabled. Now, go to the assets section and upload an image as a "large" image. This will be the image that show up in the client when you use it for Rich Presence. Take note of the keys for the images! 
+*Note: Discord-Spotify-RPC only supports large images right now!*
+![none](https://mikecao.me/i/1a8448.png)
+
+You can see your uploaded assets here, in case you need to edit them sometime in the future. You can have up to 150 of them!
+![none](https://mikecao.me/i/731626.png)
+
+Next, go to the config file and use the values from the application to fill it in.
+```json
+{
+	"clientId": "Client ID goes here",
+	"largeImageKey": "Large image key goes here"
+}
+```
+
+You're good to go! Start the program, and enjoy your new Spotify Rich Presence!
 
 ## Image and image text
 If you want to have some text above the Spotify icon when you hover over it you can do this with a simple config option! You can also change the image easily now without having to edit the JS if you have made your own application.
@@ -58,4 +85,4 @@ Example of the new values:
 }
 ```
 Result:  
-![none](https://bots.are-pretty.sexy/be34ec.png)
+![none](https://bots.are-pretty.sexy/be34ec.png/be34ec.png)
