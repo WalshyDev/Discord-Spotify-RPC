@@ -1,18 +1,25 @@
-# Install
-
+# Dependencies
 This requires NodeJS 8.0.0 or higher which can be downloaded from [here](https://nodejs.org/en/download/) and Git which can be downloaded from [here](https://git-scm.com/).
 
-Download the zip, extract to a directory then open CMD in that directory and run `npm i` and let npm install the packages.
+For Linux users, follow these steps to install the dependencies for your distro [here](https://git-scm.com/download/linux) and [here](https://nodejs.org/en/download/package-manager/)
 
-# Setup
-**As of 1.2.0, we are using @mcao's updated node-spotify-webhelper so no edits should need to be made. If it doesn't work still please follow the old instructions in v1.1.0.**
+In CMD / Terminal or whatever the equivalent is of CMD for your operating system, run: `git clone https://github.com/WalshyDev/Discord-Spotify-RPC` then, move into the newly created directory by executing `cd Discord-Spotify-RPC` and then install all packages required by Discord-Spotify-RPC: `npm install` and let NPM install the packages.
+
+# Modifying libraries
+Sadly some libraries haven't been updated in a while. This means you'll have to edit some code of the libraries otherwise it will not work.
+
+## Modifying node-spotify-webhelper
+Edit `node_modules/node-spotify-webhelper/index.js`
+You need to edit two lines in this file to make it work correctly.  
+At line 15, change the current DEFAULT_PORT variable to 4381.  
+Next, go to line 158 and change `https://%s:%d%s` to `http://%s:%d%s`
 
 # How to run
 Run `npm start` in console after the setup steps and boom! Rich Presence with your Spotify!
 
-# Configure
+# Configuration
 
-## Time option (elapsed time)
+## Time setting (elapsed time)
 By default the time option is `song-time` which will display the elapsed time as the current song time.
 
 Available options  
