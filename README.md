@@ -12,8 +12,6 @@ Sadly some libraries haven't been updated in a while. This means you'll have to 
 Edit `node_modules/wintools/lib/ps.js` so line 11 has a maxBuffer. The new line should be like this: `exec('wmic process list /format:csv', {maxBuffer: 2000*1024}, function (err, stdout, stderr) {`
 
 ## Modifying node-spotify-webhelper
-Windows users should skip these steps as they are unnnecessary.
-
 Edit `node_modules/node-spotify-webhelper/index.js`
 You need to edit two lines in this file to make it work correctly.  
 At line 15, change the current DEFAULT_PORT variable to 4381.  
