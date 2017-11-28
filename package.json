@@ -2,21 +2,19 @@
   "name": "discord-spotify-rpc",
   "version": "1.1.0",
   "description": "Adds Spotify Rich Presence to Discord",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WalshyDev/Discord-Spotify-RPC.git"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "postinstall": "node scripts/checkNodeVersion.js",
+    "build": "pkg --out-path build/ -t node8-linux-x64,node8-macos-x64,node8-win-x64 ."
   },
   "dependencies": {
-    "node-spotify-webhelper": "^0.0.6",
-    "discord-rpc": "^3.0.0-beta.3"
+    "discord-rpc": "^3.0.0-beta.3",
+    "node-spotify-webhelper": "git@github.com:liangchunn/node-spotify-webhelper.git"
   },
   "keywords": [
     "discord",
@@ -28,5 +26,10 @@
   "bugs": {
     "url": "https://github.com/WalshyDev/Discord-Spotify-RPC/issues"
   },
-  "homepage": "https://github.com/WalshyDev/Discord-Spotify-RPC#readme"
+  "homepage": "https://github.com/WalshyDev/Discord-Spotify-RPC#readme",
+  "devDependencies": {
+    "pkg": "^4.3.0-beta.1",
+    "semver": "^5.4.1"
+  },
+  "bin": "src/index.js"
 }
