@@ -16,7 +16,7 @@ var startTimestamp = new Date();
 var songName = undefined;
 
 async function updateActivity() {
-	if (!rpc)
+	if (!rpc) return;
 	if (startTimestamp && config.time === 'none') startTimestamp = undefined;
 
 	spotify.getStatus(function(err, res) {
