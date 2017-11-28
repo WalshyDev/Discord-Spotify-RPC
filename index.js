@@ -44,7 +44,7 @@ rpc.on('ready', () => {
 	updateActivity();
 	setInterval(() => {
 		updateActivity();
-	}, 60e3);
+	}, 10e3);
 });
 
 rpc.login(ClientId).catch(console.error);
