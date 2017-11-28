@@ -1,6 +1,6 @@
 {
   "name": "discord-spotify-rpc",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "description": "Adds Spotify Rich Presence to Discord",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "node-spotify-webhelper": "mcao/node-spotify-webhelper",
+    "node-spotify-webhelper": "^0.0.6",
     "discord-rpc": "^3.0.0-beta.3"
   },
   "keywords": [
