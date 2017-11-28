@@ -6,24 +6,30 @@ const DEFAULT_CONFIG = {
 }
 
 class SpotifyWebHelper {
+
     constructor(config) {
         this.config = config || DEFAULT_CONFIG
         this.spotify = new nodeSpotifyWebhelper.SpotifyWebHelper(config)
     }
+
     getTrackInfo() {
         return new Promise((resolve, reject) => {
             this.spotify.getStatus((err, res) => {
                 if (err) {
                     return reject(err)
+                }
+                if (!res.track.track_resource || !res.track.artist_resource) {
+                    return reject('[ERR!] Track info invalid', res.track)
                 } else {
                     return resolve({
-                        name: res.track.track_resource && res.track.track_resource.name || '',
-                        artist: res.track.artist_resource && res.track.artist_resource.name || '',
+                        name: res.track.track_resource.name,
+                        artist: res.track.artist_resource.name,
                     })
                 }
             })
         })
     }
+
     getPlayingStatus() {
         return new Promise((resolve, reject) => {
             this.spotify.getStatus((err, res) => {
@@ -33,11 +39,12 @@ class SpotifyWebHelper {
                 if (res.playing) {
                     return resolve()
                 } else {
-                    return reject('[INFO] Not playing anything...')
+                    return reject('[INFO] Not playing anything')
                 }
             })
         })
     }
+    
 }
 
 module.exports = SpotifyWebHelper

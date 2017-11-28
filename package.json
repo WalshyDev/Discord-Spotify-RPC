@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "discord-rpc": "^3.0.0-beta.3",
-    "node-spotify-webhelper": "git@github.com:liangchunn/node-spotify-webhelper.git"
+    "node-spotify-webhelper": "https://github.com/liangchunn/node-spotify-webhelper"
   },
   "keywords": [
     "discord",
@@ -30,6 +30,9 @@
   "devDependencies": {
     "pkg": "^4.3.0-beta.1",
     "semver": "^5.4.1"
+  },
+  "pkg": {
+    "scripts": "src/**/*.js"    
   },
   "bin": "src/index.js"
 }
