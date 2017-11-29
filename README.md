@@ -73,4 +73,4 @@ Example of the new values:
 }
 ```
 Result:  
-![none](https://bots.are-pretty.sexy/be34ec.png/be34ec.png)
+![none](https://bots.are-pretty.sexy/be34ec.png)
