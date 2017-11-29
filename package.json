@@ -15,7 +15,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "node-spotify-webhelper": "^0.0.6",
+    "node-spotify-webhelper": "nadavbar/node-spotify-webhelper",
     "discord-rpc": "^3.0.0-beta.3"
   },
   "keywords": [
