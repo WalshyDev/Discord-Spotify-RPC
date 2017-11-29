@@ -5,18 +5,6 @@ For Linux users, follow these steps to install the dependencies for your distro 
 
 In CMD / Terminal or whatever the equivelant is of CMD for your operating system, run: `git clone https://github.com/WalshyDev/Discord-Spotify-RPC` then, move into the newly created directory by executing `cd Discord-Spotify-RPC` and then install all packages required by Discord-Spotify-RPC: `npm install` and let NPM install the packages.
 
-# Modifying libraries
-Sadly some libraries haven't been updated in a while. This means you'll have to edit some code of the libraries otherwise it will not work.
-
-## Modifying wintools
-Edit `node_modules/wintools/lib/ps.js` so line 11 has a maxBuffer. The new line should be like this: `exec('wmic process list /format:csv', {maxBuffer: 2000*1024}, function (err, stdout, stderr) {`
-
-## Modifying node-spotify-webhelper
-Edit `node_modules/node-spotify-webhelper/index.js`
-You need to edit two lines in this file to make it work correctly.  
-At line 15, change the current DEFAULT_PORT variable to 4381.  
-Next, go to line 158 and change `https://%s:%d%s` to `http://%s:%d%s`
-
 # How to run
 Run `npm start` in console after the setup steps and boom! Rich Presence with your Spotify!
 
