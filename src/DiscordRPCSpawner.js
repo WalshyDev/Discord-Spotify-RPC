@@ -14,7 +14,8 @@ const error = debug('app:error:discord-rpc')
  */
 const DEFAULT_CONFIG = {
     clientId: '384286107036155904',
-    largeImageKey: 'spotify'
+    largeImageKey: 'spotify',
+    largeImageText: 'Spotify'
 }
 
 class DiscordRPC {
@@ -31,7 +32,8 @@ class DiscordRPC {
                 details: `Playing ${track.name}`,
                 state: `by ${track.artist}`,
                 instance: false,
-                largeImageKey: this.config.largeImageKey || DEFAULT_CONFIG.largeImageKey
+                largeImageKey: this.config.largeImageKey || DEFAULT_CONFIG.largeImageKey,
+                largeImageText: this.config.largeImageText || DEFAULT_CONFIG.largeImageText
             })
         } else {
             error('Cannot update RPC when disconnected!')
