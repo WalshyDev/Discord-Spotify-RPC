@@ -30,8 +30,7 @@ It's relatively easy to get your own `clientId` to use Discord Rich Presence.
 ![none](https://mikecao.me/i/68d3a8.png)
 
 5. Go to assets and upload a 'Large' image. Give it a name, and copy this name into the `largeImageKey` in `config.json`. This image will be displayed in Rich Presence. 
-*Note: Discord-Spotify-RPC only supports large images right now!*
-
+*Note: Discord-Spotify-RPC only supports large images right now!* 
 ![none](https://mikecao.me/i/1a8448.png)
 
 6. You're good to go! Start the program, and enjoy your new Spotify Rich Presence!
