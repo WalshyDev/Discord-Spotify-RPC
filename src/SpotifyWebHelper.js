@@ -1,5 +1,8 @@
 const nodeSpotifyWebhelper = require('node-spotify-webhelper')
 
+/**
+ * Fallback config if no config is passed in
+ */
 const DEFAULT_CONFIG = {
     port: 4381,
     protocol: 'http'
@@ -12,6 +15,10 @@ class SpotifyWebHelper {
         this.spotify = new nodeSpotifyWebhelper.SpotifyWebHelper(config)
     }
 
+    /**
+     * Gets the track info from Spotify
+     * @returns {Promise<Track>}
+     */
     getTrackInfo() {
         return new Promise((resolve, reject) => {
             this.spotify.getStatus((err, res) => {
@@ -19,7 +26,7 @@ class SpotifyWebHelper {
                     return reject(err)
                 }
                 if (!res.track.track_resource || !res.track.artist_resource) {
-                    return reject('[ERR!] Track info invalid', res.track)
+                    return reject('Track info invalid!', res.track)
                 } else {
                     return resolve({
                         name: res.track.track_resource.name,
@@ -30,6 +37,10 @@ class SpotifyWebHelper {
         })
     }
 
+    /**
+     * Gets the playing status of Spotify client
+     * @returns {Promise<null>}
+     */
     getPlayingStatus() {
         return new Promise((resolve, reject) => {
             this.spotify.getStatus((err, res) => {
@@ -39,7 +50,7 @@ class SpotifyWebHelper {
                 if (res.playing) {
                     return resolve()
                 } else {
-                    return reject('[INFO] Not playing anything')
+                    return reject('Not playing anything')
                 }
             })
         })

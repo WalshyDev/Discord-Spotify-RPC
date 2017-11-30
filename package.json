@@ -10,11 +10,16 @@
   "scripts": {
     "start": "node src/index.js",
     "postinstall": "node scripts/checkNodeVersion.js",
-    "build": "pkg --out-path build/ -t node8-linux-x64,node8-macos-x64,node8-win-x64 ."
+    "build": "pkg --out-path build/ -t node8-linux-x64,node8-macos-x64,node8-win-x64 . && cp config.json build/config.json"
   },
   "dependencies": {
+    "debug": "^3.1.0",
     "discord-rpc": "^3.0.0-beta.3",
     "node-spotify-webhelper": "https://github.com/liangchunn/node-spotify-webhelper"
+  },
+  "devDependencies": {
+    "pkg": "^4.3.0-beta.1",
+    "semver": "^5.4.1"
   },
   "keywords": [
     "discord",
@@ -27,12 +32,8 @@
     "url": "https://github.com/WalshyDev/Discord-Spotify-RPC/issues"
   },
   "homepage": "https://github.com/WalshyDev/Discord-Spotify-RPC#readme",
-  "devDependencies": {
-    "pkg": "^4.3.0-beta.1",
-    "semver": "^5.4.1"
-  },
   "pkg": {
-    "scripts": "src/**/*.js"    
+    "scripts": "src/**/*.js"
   },
   "bin": "src/index.js"
 }
