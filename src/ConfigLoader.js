@@ -8,6 +8,7 @@ const configFile = configFileExists && fs.readFileSync(CONFIG_PATH, 'utf8', (err
     let config
     try {
         config = JSON.parse(contents)
+        return config
     } catch (e) {
         console.log('Invalid JSON. Please check your config.json.')
         process.exit(1)
