@@ -1,47 +1,71 @@
-const DiscordRPC = require('discord-rpc');
-const ClientId = "384795814859636736";
-const rpc = new DiscordRPC.Client({ transport: 'ipc' });
-var currentSong = "";
+const { Client } = require('discord-rpc');
 
-async function updateActivity() {
-	if (!rpc)
-    	return;
+const fs = require('fs');
+const util = require('util');
+const readFileAsync = util.promisify(fs.readFile);
 
-	var fs = require('fs');
-	var filepath = `${process.env.APPDATA}\\Google Play Music Desktop Player\\json_store\\playback.json`;
-	if(!fs.existsSync(filepath)) {
-		console.log("Can't find %APPDATA%\\Google Play Music Desktop Player\\json_store\\playback.json, do you " +
-		"have Google Play Music Desktop Player installed with the JSON API enabled?");
-		return;
-	}
-    var obj = JSON.parse(fs.readFileSync(filepath, 'utf8'));
-    console.log(obj["song"]["title"]);
-	
-	if(obj["playing"] == true) {
-		rpc.setActivity({
-			details: `Playing ${obj["song"]["title"]}`,
-			state: `By ${obj["song"]["artist"]}`,
-			largeImageKey: 'gpm',
-			instance: false,
-		});
-	} else {
-		rpc.setActivity({
-			details: `Nothing`,
-			largeImageKey: 'gpm',
-			instance: false,
-		});
-	}
+const clientId = '385907386218708992';
+const rpc = new Client({ transport: 'ipc' });
+
+const data = {
+    track: undefined,
+    playing: undefined,
+    time_started: undefined
 }
 
+/**
+ * @todo Change ``update()`` and mutate variables outside of ``update()``
+ * @param {*} param 
+ */
+function checkPlaying() {
+}
+
+/**
+ * @todo Change ``update()`` and mutate variables outside of ``update()``
+ * @param {*} param 
+ */
+async function stateChanged({ track, playing, time_elapsed }) {
+}
+
+/**
+ * Updater
+ * @return {*} RPC Change 
+ */
+function update() {
+    if (!rpc)
+        return;
+
+    let filepath = `${process.env.APPDATA}\\Google Play Music Desktop Player\\json_store\\playback.json`
+    readFileAsync(filepath, 'utf8').then((_data) => {
+        const data = JSON.parse(_data);
+        if (data.playing == true) {
+            console.log(`${data.song.artist} - ${data.song.title}`);
+            rpc.setActivity({
+                details: `${data.song.title}`,
+                state: `${data.song.artist}`,
+                largeImageKey: 'gpm-logo',
+                instance: false
+            });
+        } else {
+            rpc.setActivity({
+                details: 'Paused',
+                largeImageKey: 'gpm-logo',
+                instance: false
+            });
+        }
+    }).catch(console.error);
+}
+
+/**
+ * RPC Ready Event
+ */
 rpc.on('ready', () => {
-	console.log(`Starting with clentId ${ClientId}`);
-
-	updateActivity();
-
-	// activity can only be set every 15 seconds
-	setInterval(() => {
-		updateActivity();
-	}, 15e3);
+    console.log('Client ready.');
+    update();
+    setInterval(() => update(), 15e3);
 });
 
-rpc.login(ClientId).catch(console.error);
+/**
+ * RPC Login Event
+ */
+rpc.login(clientId).catch(console.error);
