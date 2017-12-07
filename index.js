@@ -42,7 +42,7 @@ async function updateActivity() {
 rpc.on('ready', () => {
     console.log(`Starting with clientId ${ClientId}`);
     updateActivity();
-    setInterval(updateActivity, 10e3);
+    setInterval(updateActivity, 15e3);
 });
 
 rpc.login(ClientId).catch(console.error);
