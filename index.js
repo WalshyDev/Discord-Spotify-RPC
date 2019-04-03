@@ -1,14 +1,14 @@
 const DiscordRPC = require('discord-rpc'),
-	nodeSpotifyWebhelper = require('node-spotify-webhelper'),
-	spotify = new nodeSpotifyWebhelper.SpotifyWebHelper(),
-	config = require('./config.json');
+    nodeSpotifyWebhelper = require('node-spotify-webhelper'),
+    spotify = new nodeSpotifyWebhelper.SpotifyWebHelper(),
+    config = require('./config.json');
 
-const ClientId = config.clientId || "384286107036155904";
-const imageKey = config.largeImageKey || "spotify";
+const ClientId = config.clientId || '384286107036155904';
+const imageKey = config.largeImageKey || 'spotify';
 const imageText = config.largeImageText || undefined;
 
 const rpc = new DiscordRPC.Client({
-	transport: 'ipc'
+    transport: 'ipc'
 });
 
 const timeMode = config.time || 'overall';
@@ -16,35 +16,33 @@ var startTimestamp = new Date();
 var songName = undefined;
 
 async function updateActivity() {
-	if (!rpc) return;
-	if (startTimestamp && config.time === 'none') startTimestamp = undefined;
+    if (!rpc) return;
+    if (startTimestamp && timeMode === 'none') startTimestamp = undefined;
 
-	spotify.getStatus(function(err, res) {
-		if (err) return console.error(err);
-		if (res.track.track_resource && res.track.track_resource.name && res.track.track_resource.name != songName) {
-			if (config.time === 'song-time') {
-				startTimestamp = new Date(new Date() - (res.playing_position * 1000));
-			}
-			songName = res.track.track_resource.name;
-			rpc.setActivity({
-				details: `Playing ${res.track.track_resource.name}`,
-				state: `By ${res.track.artist_resource.name}`,
-				startTimestamp,
-				largeImageKey: imageKey,
-				largeImageText: imageText,
-				instance: false,
-			});
-			console.log(`[${new Date().toLocaleTimeString()}] Updated Rich Presence - ${res.track.track_resource.name}`)
-		}
-	})
+    spotify.getStatus((err, res) => {
+        if (err) return console.error(err);
+        if (res.track.track_resource && res.track.track_resource.name && res.track.track_resource.name !== songName) {
+            if (timeMode === 'song-time') {
+                startTimestamp = new Date(new Date() - res.playing_position * 1000);
+            }
+            songName = res.track.track_resource.name;
+            rpc.setActivity({
+                details: `Playing ${res.track.track_resource.name}`,
+                state: `By ${res.track.artist_resource.name}`,
+                startTimestamp,
+                largeImageKey: imageKey,
+                largeImageText: imageText,
+                instance: false,
+            });
+            console.log(`[${new Date().toLocaleTimeString()}] Updated Rich Presence - ${res.track.track_resource.name}`);
+        }
+    });
 }
 
 rpc.on('ready', () => {
-	console.log(`Starting with clientId ${ClientId}`);
-	updateActivity();
-	setInterval(() => {
-		updateActivity();
-	}, 10e3);
+    console.log(`Starting with clientId ${ClientId}`);
+    updateActivity();
+    setInterval(updateActivity, 15e3);
 });
 
 rpc.login({ clientId: ClientId }).catch(console.error);
